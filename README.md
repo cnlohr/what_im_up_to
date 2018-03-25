@@ -15,6 +15,7 @@ Just my dumping ground for ideas.
 3) Write 3D engine that can also broadcast to browser.  Use rawdraw as the windower, but that's it.
 4) ESP32 Tracker
 5)   -> Reliant on tccengine <- Livestream game production of my line-based SPT ripoff.
+6) FDM Multitrackers
 
 
 ESP8266/ESP32 stuff
