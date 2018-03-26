@@ -18,6 +18,7 @@ Just my dumping ground for ideas.
 5)   -> Reliant on tccengine <- Livestream game production of my line-based SPT ripoff.
 6) FDM Multitrackers
 7) Document libsurvive.
+8) Make a google-cardboard-type-lighthouse-addon.
 
 ESP8266/ESP32 stuff
 1) Make a system for doing wireless audio microphones with diversity in reception.
