@@ -1,6 +1,11 @@
 # what_im_up_to
 Just my dumping ground for ideas.
 
+# Generic
+1) Make "file name to string" function in os_generic.
+2) Write tccengine and put in cntools.
+
+
 # Livestreaming stuff
 
 1) Make cnlohr_social_media_tools able to get stream metadata like viewer count.
