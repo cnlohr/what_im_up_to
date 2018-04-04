@@ -18,7 +18,7 @@ Just my dumping ground for ideas.
 
 1) Update build system: https://stackoverflow.com/a/39731462/2926815
 2) Figure out scaling on IMU and use survive_imu.
-3) 
+3) Make calibration happen super fast1
 4) ESP32 Tracker
 5)   -> Reliant on tccengine <- Livestream game production of my line-based SPT ripoff.
 6) FDM Multitrackers
