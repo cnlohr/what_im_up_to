@@ -28,3 +28,6 @@ Just my dumping ground for ideas.
 
 ESP8266/ESP32 stuff
 1) Make a system for doing wireless audio microphones with diversity in reception.
+
+
+For Liburvive: Update build system: https://stackoverflow.com/a/39731462/2926815
