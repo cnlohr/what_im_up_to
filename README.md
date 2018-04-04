@@ -16,9 +16,9 @@ Just my dumping ground for ideas.
 
 # Libsurvive
 
-1) Keep praying that AlbinoFrenchie stays on top of things with the libsurvive homebase.
-2)   -> Reliant on Unit-E Rasphat <- Make my orange-pi-vive-pack.
-3) Write 3D engine that can also broadcast to browser.  Use rawdraw as the windower, but that's it.
+1) Update build system: https://stackoverflow.com/a/39731462/2926815
+2) Figure out scaling on IMU and use survive_imu.
+3) 
 4) ESP32 Tracker
 5)   -> Reliant on tccengine <- Livestream game production of my line-based SPT ripoff.
 6) FDM Multitrackers
@@ -30,4 +30,4 @@ ESP8266/ESP32 stuff
 1) Make a system for doing wireless audio microphones with diversity in reception.
 
 
-For Liburvive: Update build system: https://stackoverflow.com/a/39731462/2926815
+
