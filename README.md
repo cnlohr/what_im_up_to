@@ -5,8 +5,6 @@ Just my dumping ground for ideas.
 1) Make "file name to string" function in os_generic.
 2) Write tccengine and put in cntools.
 3) Update https://en.wikipedia.org/wiki/Infinite_impulse_response with C code!
-4) Pi Supply
-5) Covered wagon
 6) Drum orders
 
 # Livestreaming stuff
