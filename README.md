@@ -17,9 +17,9 @@ Just my dumping ground for ideas.
 
 # Libsurvive
 
-1) Update build system: https://stackoverflow.com/a/39731462/2926815
+1) ~~~Update build system: https://stackoverflow.com/a/39731462/2926815~~~
 2) Figure out scaling on IMU and use survive_imu.
-3) Make calibration happen super fast1
+3) Make calibration happen super fast!
 4) ~~~ESP32~~~ ESP8266 Tracker
 Make my tracker handle calibration.
 5)   -> Reliant on tccengine <- Livestream game production of my line-based SPT ripoff.
