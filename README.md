@@ -28,6 +28,7 @@ Make my tracker handle calibration.
 7) Document libsurvive.
 8) Make a google-cardboard-type-lighthouse-addon.
 9) drive the mill with a controller
+10) Try Nairol's firmware.
 
 ESP8266/ESP32 stuff
 1) Make a system for doing wireless audio microphones with diversity in reception.
