@@ -35,4 +35,14 @@ ESP8266/ESP32 stuff
 1) Make a system for doing wireless audio microphones with diversity in reception.
 
 
+99C99in99
+ * main
+ * /proc/cmdline
+
+
+Interesting C:
+ * /proc/cmdline
+ * /proc/maps, /proc/exe, objdump
+ 
+
 
