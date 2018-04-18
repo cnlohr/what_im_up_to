@@ -36,7 +36,10 @@ ESP8266/ESP32 stuff
 
 
 99C99in99
- * main
+ * Thinking Procedurally
+ * main(...) and functions.
+ * variables
+ * 
  * /proc/cmdline
 
 
