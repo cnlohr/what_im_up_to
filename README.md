@@ -41,6 +41,8 @@ ESP8266/ESP32 stuff
  * variables
  * 
  * /proc/cmdline
+ * /proc/mem
+ * /proc/maps
 
 
 Interesting C:
