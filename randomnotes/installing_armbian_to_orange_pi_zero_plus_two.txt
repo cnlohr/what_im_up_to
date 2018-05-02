@@ -1,0 +1,111 @@
+2018-05-01
+
+Download image from: https://www.armbian.com/orange-pi-zero-2-h5/
+
+https://dl.armbian.com/orangepizeroplus2-h5/Debian_stretch_next.7z
+
+extract image
+
+# dd if=[image] of=/dev/mmcblk0 bs=1M
+
+Put disk image.
+teminal in, and... 
+  # nand-sata-install
+Select ext3.
+
+give it a few minutes.
+
+Reboot.
+
+ # nmcli device wifi rescan
+ # nmcli device wifi list
+ # nmcli device wifi connect SSID-Name password wireless-password
+
+You can now connect in directly.
+
+Mask daily cron it just does crazy stuff like unintended upgrades.
+ # systemctl mask apt-daily.service
+
+Install some stuff
+
+ # apt-get update
+ # apt-get dist-upgrade
+ # apt-get install build-essential zlib1g-dev libusb-1.0-0-dev git locate quilt libtool-bin debhelper dh-autoreconf fakeroot pkg-config autoconf automake libncurses-dev bison flex
+
+
+ # apt-get install linux-dtb-dev-sunxi64
+
+ # armbian-config
+ #  System->Nightly
+
+
+
+
+
+
+NOOOOO
+
+Install existing kernel:
+ #  NO: apt-get install  linux-image-next-sunxi64 linux-dtb-next-sunxi64 linux-source-4.14.18-next-sunxi64
+ #  apt-get install linux-image-dev-sun50iw2 linux-headers-dev-sun50iw2 linux-dtb-dev-sun50iw2
+ # reboot
+
+
+
+
+TO GET KERNEL (Don't do this)
+
+ # mkdir git
+ # cd git
+ # git clone --depth 1 https://github.com/linux-sunxi/linux-sunxi -b sunxi-next
+ #  cd linux-sunxi
+ #  cat /proc/config.gz | gunzip > .config
+ #  make oldconfig
+ #  make -j3
+ #  make dtbs modules modules_install
+ #  
+
+
+
+
+"First get a working display driver"
+ # http://linux-sunxi.org/Display
+
+
+Err... consider this stuff: http://linux-sunxi.org/Mali_binary_driver
+
+
+
+
+
+
+
+
+
+
+Checkout some git stuff...
+ # mkdir git
+ # cd git
+ # git clone https://github.com/cnlohr/spreadgine
+ # git clone https://github.com/linux-sunxi/libump.git
+ #  cd libump
+ #  dpkg-buildpackage -b
+ #  libtool --finish /usr/lib/aarch64-linux-gnu
+ #  dpkg -i ../libump_*.deb
+ #  cd ..
+ # git clone --recursive https://github.com/linux-sunxi/sunxi-mali.git
+ #  cd sunxi-mali
+ #  export ABI=armhf
+
+
+
+NO:
+ # git clone https://github.com/mripard/sunxi-mali
+ #  cd sunxi-mali
+ #  export CROSS_COMPILE=$TOOLCHAIN_PREFIX
+ #  export KDIR=$KERNEL_BUILD_DIR
+ #  export INSTALL_MOD_PATH=$TARGET_DIR
+ #  ./build.sh -r r6p2 -b
+ #  ./build.sh -r r6p2 -i
+
+
