@@ -1,0 +1,59 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	//compatible = "allwinner,sun50i-h5-mali", "allwinner,sun50i-h5";
+
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			soc {
+				mali: gpu@1280000 {
+					//compatible = "allwinner,sun50i-h5-mali", "arm,mali-450";
+					reg = <0x01e80000 0x30000>;
+					// GIC_SPI n IRQ_TYPE_LEVEL_HIGH
+					interrupts = <0 96 4>, 
+							 <0 97 4>,
+							 <0 98 4>,
+							 <0 99 4>,
+							 <0 100 4>,
+							 <0 101 4>,
+							 <0 102 4>,
+							 <0 103 4>,
+							 <0 104 4>,
+							 <0 105 4>,
+							 <0 106 4>,
+							 <0 107 4>;
+					interrupt-names = "gp",
+							  "gpmmu",
+							  "pmu",
+							  "pp",
+							  "pp0",
+							  "ppmmu0",
+							  "pp1",
+							  "ppmmu1",
+							  "pp2",
+							  "ppmmu2",
+							  "pp3",
+							  "ppmmu3";
+
+					//#define CLK_BUS_GPU		49  (From sun8i-h3-ccu.h) OR IS IT &bus_gpu_clk.common.hw???
+					//#define CLK_GPU			114 (From sun8i-h3-ccu.h) 
+					//sun8i-h3-ccu.h:#define RST_BUS_GPU		35
+
+					clocks = <&ccu 49>, <&ccu 114>;
+					clock-names = "bus", "core";
+					resets = <&ccu 35>;
+
+					assigned-clocks = <&ccu 114>;
+					assigned-clock-rates = <384000000>;
+				};
+			};
+		};
+	};
+};
+
+//From patch https://raw.githubusercontent.com/jernejsk/LibreELEC.tv/aw_h5_init/projects/Allwinner/devices/H5/patches/linux/20-add-mali-node.patch
+//Patching https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+//Example patch https://github.com/armbian/sunxi-DT-overlays/blob/master/examples/gpio-button.dts
+

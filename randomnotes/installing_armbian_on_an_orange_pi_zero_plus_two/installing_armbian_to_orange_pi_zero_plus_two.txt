@@ -33,10 +33,31 @@ Install some stuff
  # apt-get install build-essential zlib1g-dev libusb-1.0-0-dev git locate quilt libtool-bin debhelper dh-autoreconf fakeroot pkg-config autoconf automake libncurses-dev bison flex
 
 
+Patch the dtbs to add the mali node.
  # apt-get install linux-dtb-dev-sunxi64
-
+ # apt-get dist-upgrade
  # armbian-config
- #  System->Nightly
+  System->Nightly
+  Reboot
+  Put the 20-add-mali-node.dts file on the system.
+ # apt-get install linux-headers-next-sunxi64
+ # armbian-add-overlay 20-add-mali-node.dts
+ # reboot
+
+Get the Mali kernel module stuff...
+ # apt-get install linux-headers-next-sunxi64
+ # git clone https://github.com/mripard/sunxi-mali
+ #  cd sunxi-mali
+ #  export CROSS_COMPILE=
+ #  export KDIR=/usr/src/linux-headers-4.14.37-sunxi64/
+ #  export INSTALL_MOD_PATH=/lib/modules/4.14.37-sunxi64
+ #  ./build.sh -r r6p2 -b
+ #  ./build.sh -r r6p2 -i
+ #  insmod /root/git/sunxi-mali/r6p2/src/devicedrv/mali/mali.ko
+
+
+
+
 
 
 
@@ -97,15 +118,5 @@ Checkout some git stuff...
  #  cd sunxi-mali
  #  export ABI=armhf
 
-
-
-NO:
- # git clone https://github.com/mripard/sunxi-mali
- #  cd sunxi-mali
- #  export CROSS_COMPILE=$TOOLCHAIN_PREFIX
- #  export KDIR=$KERNEL_BUILD_DIR
- #  export INSTALL_MOD_PATH=$TARGET_DIR
- #  ./build.sh -r r6p2 -b
- #  ./build.sh -r r6p2 -i
 
 
