@@ -3,13 +3,19 @@
 
 / {
 	//compatible = "allwinner,sun50i-h5-mali", "allwinner,sun50i-h5";
+	//compatible = "allwinner,sun50i-h5-mali",
+	//				     "arm,mali-450";
 
-	fragment@1 {
+	compatible = "allwinner,sun50i-h5-mali","arm,mali-450", "allwinner,sun50i-h5";
+
+	fragment@0 {
 		target-path = "/";
 		__overlay__ {
 			soc {
 				mali: gpu@1280000 {
 					//compatible = "allwinner,sun50i-h5-mali", "arm,mali-450";
+
+					compatible = "allwinner,sun50i-h5-mali","arm,mali-450", "allwinner,sun50i-h5";
 					reg = <0x01e80000 0x30000>;
 					// GIC_SPI n IRQ_TYPE_LEVEL_HIGH
 					interrupts = <0 96 4>, 
