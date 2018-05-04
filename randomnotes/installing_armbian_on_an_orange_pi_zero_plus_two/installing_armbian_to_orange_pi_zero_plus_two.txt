@@ -55,7 +55,24 @@ Get the Mali kernel module stuff...
  #  ./build.sh -r r6p2 -i
  #  insmod /root/git/sunxi-mali/r6p2/src/devicedrv/mali/mali.ko
 
+Atempt 2:
+ * Also check out Icenowy's one with r7p0
+ * copy mripard's May 3 patches over icensnow's patch folder
+ * Build as normal.
+ * Ctrl+c before it gets carried away.
+ * Edit the Makefile in r7p0/src/mali/ Makefile to set JOBS=1
+ * Comment out __GFP_REPEAT
+ * Build and insmod it.
 
+NEXT:
+Download the binary driver.
+https://github.com/rockchip-linux/libmali/blob/rockchip/lib/arm-linux-gnueabihf/libmali-utgard-400-r7p0-fbdev.so?raw=true
+
+Try copying mali to /usr/local/lib/libMali.so
+Add /root/git/sunxi-mali-linux/include/ to the include files.
+
+VVV Try this one!
+wget https://github.com/rockchip-linux/libmali/blob/rockchip/lib/aarch64-linux-gnu/libmali-utgard-450-r7p0-fbdev.so?raw=true -O /usr/lib/libMali.so
 
 
 
