@@ -74,6 +74,22 @@ Add /root/git/sunxi-mali-linux/include/ to the include files.
 VVV Try this one!
 wget https://github.com/rockchip-linux/libmali/blob/rockchip/lib/aarch64-linux-gnu/libmali-utgard-450-r7p0-fbdev.so?raw=true -O /usr/lib/libMali.so
 
+Try installing...
+extraargs=cma=128M drm_kms_helper.drm_fbdev_overalloc=200
+# drm.debug=0xff
+# drm_kms_helper.drm_fbdev_permit_non_desktop=1
+
+to /boot/armbianEnv.txt
+
+
+Let's try this instead:
+
+git clone https://github.com/rockchip-linux/libmali.git
+cd libmali
+mkdir build
+cd build
+cmake ..
+make install
 
 
 
