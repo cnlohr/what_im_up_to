@@ -1,11 +1,12 @@
+# Installing Linux on a PowerSpec 1510
 
-I've taken some notes about what I needed to do to get Linux running on my powerspec.  Most notably, with regards to the NVIDIA + Intel card. This is the same laptop that's built on a clevo frame with aIntel I7-7700 and an Nvidia GTX 1070.
+I've taken some notes about what I needed to do to get Linux running on my powerspec.  Most notably, with regards to the NVIDIA + Intel card. This is the same laptop that's built on a clevo frame with aIntel I7-7700 and an Nvidia GTX 1070.  These instructions for the most part should also workon  
 
 I admit some of this is a little hocus pocus and may not be needed, but I do currently have a working system.
 
 In BIOS, set the video card to Dedicated.  It's very difficult to get the system installed if you're dealing with the whole hybrid thing.
 
-You can then install your system, and install the NVIDIA drivers.
+You can then install your system, and install the NVIDIA drivers.  As a note, what I did was I used ntfsresize to change the size of the Windows partition on the nvme to be smaller, then used fdisk to manually set up partitions and told the installer what to do, since the installer wants to just put everything on the spinny disk.
 
 Once you're booted into your new system on NVIDIA, you can edit your grub defaults. ```/etc/defaults/grub```
 
@@ -38,18 +39,45 @@ You should also edit the ELILO section of ```/etc/grub.d/10_linux``` so it looks
   fi
 ```
 
-Update grub with ```update-grub2``` and reboot.
+You'll also need to install an hwe kernel.  I'm not sure why, but before I did this, I had a hard as nails time getting the intel video working.
+
+```apt-get install linux-headers-4.10.0-20-lowlatency linux-image-lowlatency-hwe-16.04-edge --install-recommends```
+
+May want to theraputically run ```update-grub2```
 
 ```sudo apt-get --no-install-recommends install bumblebee primus```
 
 ```apt-get install gdm3```
 Select gdm3 as your interface.  I don't know why lightdm is busted on these systems...
 
+Copy the xorg.conf seen below int your ```/etc/xorg.conf``` then reboot your system.
+
+### Day-to-day use.
+
+As a warning: You may need to actually turn the GPU on and off manually.
+
+ ```
+ tee /proc/acpi/bbswitch <<<OFF
+ tee /proc/acpi/bbswitch <<<ON
+ ```
+ 
+ Unfortunately, in my experience, this doesn't seem to fix it all the time.
+
+### Bonus commands
+
+Monitor power usage: 
+
+```watch upower -i /org/freedesktop/UPower/devices/battery_BAT0```
+
+
+# Additional features, like that keyboard
+
+
+TODO
 
 
 
-
-
+# Appendix: /etc/xorg.conf
 Here's my xorg.conf -- copy this into /etc/X11/xorg.conf before booting gdm3.
 ```
 Section "ServerLayout"
