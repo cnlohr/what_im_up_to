@@ -73,6 +73,25 @@ Monitor power usage:
 # Additional features, like that keyboard
 
 
+Disable kernel verification
+```
+sudo ssh-keygen -t rsa
+sudo apt-get install mokutil
+sudo mokutil --disable-validation
+```
+
+For the keyboard, etc...
+```git clone https://bitbucket.org/tuxedocomputers/clevo-xsm-wmi
+cd clevo-xsm-wmi/module
+sudo make install
+echo "options clevo-xsm-wmi kb_color=white,white,white kb_brightnes=1" > /etc/modprobe.d/clevo-xsm-wmi.conf                     
+insmod /home/charles/git/clevo-xsm-wmi/module/clevo-xsm-wmi.ko
+cd ..
+apt-get install pip python3-tk python3-pip python3-setuptools python-tk
+pip install cefpython3
+
+```
+
 TODO
 
 
