@@ -1,1 +1,208 @@
 
+I've taken some notes about what I needed to do to get Linux running on my powerspec.  Most notably, with regards to the NVIDIA + Intel card. This is the same laptop that's built on a clevo frame with aIntel I7-7700 and an Nvidia GTX 1070.
+
+I admit some of this is a little hocus pocus and may not be needed, but I do currently have a working system.
+
+In BIOS, set the video card to Dedicated.  It's very difficult to get the system installed if you're dealing with the whole hybrid thing.
+
+You can then install your system, and install the NVIDIA drivers.
+
+Once you're booted into your new system on NVIDIA, you can edit your grub defaults. ```/etc/defaults/grub```
+
+Make yours look like this.  It is important that the kernel and grub don't try doing stuff with non-text modes here, otherwise stuff will break and it'll be really painful to fix.
+
+```
+GRUB_DEFAULT=0
+#GRUB_HIDDEN_TIMEOUT=0
+GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_TIMEOUT=10
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT=""
+GRUB_GFXPAYLOAD_LINUX=text
+GRUB_CMDLINE_LINUX=""
+```
+
+You should also edit the ELILO section of ```/etc/grub.d/10_linux``` so it looks like this, to prevent grub from trying to do video stuff.
+```
+  if [ "x$GRUB_GFXPAYLOAD_LINUX" = x ]; then
+      echo "    #load_video" | sed "s/^/$submenu_indentation/"
+  else
+      if [ "x$GRUB_GFXPAYLOAD_LINUX" != xtext ]; then
+          echo "        #load_video" | sed "s/^/$submenu_indentation/"
+      fi
+  fi
+  if ([ "$ubuntu_recovery" = 0 ] || [ x$type != xrecovery ]) && \
+     ([ "x$GRUB_GFXPAYLOAD_LINUX" != x ] || [ "$gfxpayload_dynamic" = 1 ]); then
+      echo "    #gfxmode \$linux_gfx_mode" | sed "s/^/$submenu_indentation/"
+      echo "    gfxmode text" | sed "s/^/$submenu_indentation/"
+  fi
+```
+
+Update grub with ```update-grub2``` and reboot.
+
+```sudo apt-get --no-install-recommends install bumblebee primus```
+
+```apt-get install gdm3```
+Select gdm3 as your interface.  I don't know why lightdm is busted on these systems...
+
+
+
+
+
+
+Here's my xorg.conf -- copy this into /etc/X11/xorg.conf before booting gdm3.
+```
+Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	Screen      1  "Screen1" RightOf "Screen0"
+	InputDevice    "Mouse0" "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection
+
+Section "Files"
+	ModulePath   "/usr/lib/xorg/modules"
+	FontPath     "/usr/share/fonts/X11/misc"
+	FontPath     "/usr/share/fonts/X11/cyrillic"
+	FontPath     "/usr/share/fonts/X11/100dpi/:unscaled"
+	FontPath     "/usr/share/fonts/X11/75dpi/:unscaled"
+	FontPath     "/usr/share/fonts/X11/Type1"
+	FontPath     "/usr/share/fonts/X11/100dpi"
+	FontPath     "/usr/share/fonts/X11/75dpi"
+	FontPath     "built-ins"
+EndSection
+
+Section "Module"
+	Load  "glx"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "kbd"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option	    "Protocol" "auto"
+	Option	    "Device" "/dev/input/mice"
+	Option	    "ZAxisMapping" "4 5 6 7"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor0"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor1"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz",
+        ### <percent>: "<f>%"
+        ### [arg]: arg optional
+        #Option     "Accel"              	# [<bool>]
+        #Option     "AccelMethod"        	# <str>
+        #Option     "Backlight"          	# <str>
+        #Option     "CustomEDID"         	# <str>
+        #Option     "DRI"                	# <str>
+        #Option     "Present"            	# [<bool>]
+        #Option     "ColorKey"           	# <i>
+        #Option     "VideoKey"           	# <i>
+        #Option     "Tiling"             	# [<bool>]
+        #Option     "LinearFramebuffer"  	# [<bool>]
+        #Option     "HWRotation"         	# [<bool>]
+        #Option     "VSync"              	# [<bool>]
+        #Option     "PageFlip"           	# [<bool>]
+        #Option     "SwapbuffersWait"    	# [<bool>]
+        #Option     "TripleBuffer"       	# [<bool>]
+        #Option     "XvPreferOverlay"    	# [<bool>]
+        #Option     "HotPlug"            	# [<bool>]
+        #Option     "ReprobeOutputs"     	# [<bool>]
+        #Option     "XvMC"               	# [<bool>]
+        #Option     "ZaphodHeads"        	# <str>
+        #Option     "VirtualHeads"       	# <i>
+        #Option     "TearFree"           	# [<bool>]
+        #Option     "PerCrtcPixmaps"     	# [<bool>]
+        #Option     "FallbackDebug"      	# [<bool>]
+        #Option     "DebugFlushBatches"  	# [<bool>]
+        #Option     "DebugFlushCaches"   	# [<bool>]
+        #Option     "DebugWait"          	# [<bool>]
+        #Option     "BufferCache"        	# [<bool>]
+	Identifier  "Card0"
+	Driver      "intel"
+	BusID       "PCI:0:2:0"
+EndSection
+
+Section "Device"
+	Identifier  "Card1"
+	Driver      "nvidia"
+	BusID       "PCI:1:0:0"
+EndSection
+
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
+Section "Screen"
+	Identifier "Screen1"
+	Device     "Card1"
+	Monitor    "Monitor1"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+```
