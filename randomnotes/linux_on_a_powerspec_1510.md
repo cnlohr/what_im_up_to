@@ -65,6 +65,23 @@ As a warning: You may need to actually turn the GPU on and off manually.
  
  Unfortunately, in my experience, this doesn't seem to fix it all the time.
 
+### Work-around!!!
+
+Ok, so something's up with xorg.conf's getting overwritten, but it seems if you add them to copy-in on boot, everything works.
+
+This is my current rc.local...
+
+```
+echo "disable" > /sys/firmware/acpi/interrupts/gpe6F
+echo "rc.local" > /tmp/rclocal
+
+cp /root/xorg.conf.nvidia3 /etc/X11/xorg.conf
+cp /root/xorg.conf.nvidia3 /etc/xorg.conf
+
+rfkill block bluetooth
+```
+
+
 ### Bonus commands
 
 Monitor power usage: 
