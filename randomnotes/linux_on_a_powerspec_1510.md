@@ -79,6 +79,8 @@ cp /root/xorg.conf.nvidia3 /etc/X11/xorg.conf
 cp /root/xorg.conf.nvidia3 /etc/xorg.conf
 
 rfkill block bluetooth
+sudo insmod /lib/modules/$(uname -r)/extra/clevo-xsm-wmi.ko poll_freq=20
+exit 0
 ```
 
 
