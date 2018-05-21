@@ -48,7 +48,9 @@ May want to theraputically run ```update-grub2```
 ```sudo apt-get --no-install-recommends install bumblebee primus```
 
 ```apt-get install gdm3```
-Select gdm3 as your interface.  I don't know why lightdm is busted on these systems...
+Select gdm3 as your interface.  I don't know why lightdm is busted on these systems...  EDIT: Not sure why, now it's the other way around...
+
+You may need to enter multi-user mode.  This will prevent a display manager from starting automatically. ```systemctl set-default multi-user.target```
 
 Copy the xorg.conf seen below int your ```/etc/xorg.conf``` then reboot your system.
 
@@ -188,8 +190,17 @@ Section "Device"
 EndSection
 
 Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz",
+        ### <percent>: "<f>%"
+        ### [arg]: arg optional
+        #Option     "ShadowFB"           	# [<bool>]
+        #Option     "Rotate"             	# <str>
+        #Option     "fbdev"              	# <str>
+        #Option     "debug"              	# [<bool>]
 	Identifier  "Card1"
-	Driver      "nvidia"
+	Driver      "fbdev"
 	BusID       "PCI:1:0:0"
 EndSection
 
@@ -252,4 +263,5 @@ Section "Screen"
 		Depth     24
 	EndSubSection
 EndSection
+
 ```
