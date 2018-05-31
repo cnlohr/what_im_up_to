@@ -7,7 +7,8 @@ Just my dumping ground for ideas.
 3) Update https://en.wikipedia.org/wiki/Infinite_impulse_response with C code!
 4) WS2813
 5) ESP32/Eth
-Video for editing memory.
+6) Buy more routers...
+Video for editing process memory live.
 
 # Livestreaming stuff
 
