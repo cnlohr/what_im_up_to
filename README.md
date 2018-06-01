@@ -1,6 +1,11 @@
 # what_im_up_to
 Just my dumping ground for ideas.
 
+# MAGStock
+ * I have two 2' square panels of lighter color and the enormous piece you got.
+ * The laser is 32" x 18"
+ * 20 sqft?
+
 # Generic
 1) Make "file name to string" function in os_generic.
 2) Write tccengine and put in cntools.
