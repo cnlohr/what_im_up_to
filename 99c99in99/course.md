@@ -29,8 +29,8 @@ This is the hello world program.  Programmers learn hello, world.
 ### (20) Compiling
 
 
-
-
+### Development Patterns
+ * Shimming code (Developing in one environment for another)
 
 
 ### (35) Header dependencies
