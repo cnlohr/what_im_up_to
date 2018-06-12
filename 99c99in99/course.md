@@ -31,7 +31,8 @@ This is the hello world program.  Programmers learn hello, world.
 
 ### Development Patterns
  * Shimming code (Developing in one environment for another)
-
+ * Boxcar and IIR filters
+ * bit-shift IIRs
 
 ### (35) Header dependencies
 
