@@ -42,6 +42,8 @@ This is the hello world program.  Programmers learn hello, world.
 
 ## More advanced...
 
+ * Integer math, and how to avoid floats.
+
 ### (55) __attribute__((constructor))
 
 ### (63) The world before main.
