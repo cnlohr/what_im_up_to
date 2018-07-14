@@ -1,4 +1,4 @@
-# Installing Linux on a PowerSpec 1510
+# Installing Linux on a PowerSpec 1510 / PowerSpec 1710
 
 I've taken some notes about what I needed to do to get Linux running on my powerspec.  Most notably, with regards to the NVIDIA + Intel card. This is the same laptop that's built on a clevo frame with aIntel I7-7700 and an Nvidia GTX 1070.  These instructions for the most part should also workon  
 
