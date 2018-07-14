@@ -18,10 +18,12 @@ GRUB_DEFAULT=0
 GRUB_HIDDEN_TIMEOUT_QUIET=true
 GRUB_TIMEOUT=10
 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-GRUB_CMDLINE_LINUX_DEFAULT=""
+GRUB_CMDLINE_LINUX_DEFAULT="nofb vga=normal psmouse.synaptics_intertouch=1"
 GRUB_GFXPAYLOAD_LINUX=text
 GRUB_CMDLINE_LINUX=""
 ```
+
+A big note:  You should realy include `psmouse.synaptics_intertouch=1` otherwise the touchpad will behave squirelly every now and then.
 
 You should also edit the ELILO section of ```/etc/grub.d/10_linux``` so it looks like this, to prevent grub from trying to do video stuff.
 ```
