@@ -16,10 +16,22 @@ Based roughly on Elecrow / PCBWay assembly services.
  * BGAs cost $$$
  
 ## Important Parts
- * Side-emitting LED: SK6812-SIDE [Datasheet](http://www.witop-tech.com/wp-content/uploads/.../SK6812-5v-Side-digital-led-chip.pdf) NOTE: Requires 0.1uF or 0.22uF bypass cap every few.
- * High reliability, built-in bypass cap: WS2813 [Datasheet](http://www.world-semi.com/DownLoadFile/136)
+
+### LEDs
+ * Side-emitting LED: **SK6812-SIDE** [Datasheet](http://www.witop-tech.com/wp-content/uploads/.../SK6812-5v-Side-digital-led-chip.pdf) NOTE: Requires 0.1uF or 0.22uF bypass cap every few.
+ * High reliability, built-in bypass cap: **WS2813** [Datasheet](http://www.world-semi.com/DownLoadFile/136) [Buy](http://www.szledcolor.com/productshow.asp?id=965)
+ * LED with beautiful yellow, fairly robust: **SK6812-RGBY** [Datasheet](http://www.szledcolor.com/download/SK6812%20RGBY%20LED.pdf) [Buy](http://www.szledcolor.com/productshow.asp?id=946)
+ * 35mm x 35mm WS2812B: **WS2812B-MINI** [Datasheet](http://www.world-semi.com/DownLoadFile/112) [Buy](http://www.szledcolor.com/productshow.asp?id=967)  NOTE: DO NOT USE SK6812 mini style, they are VERY FRAGILE.
+ 
+### Electromech
  * 10x10 Tactile Button [PTS645SM43SMTR92 LFS Datasheet](https://www.ckswitches.com/media/1471/pts645.pdf) NOTE: Part number PTS645S?/?SMTR92LFS valid. [Digikey](https://www.digikey.com/product-detail/en/c-k/PTS645SM43SMTR92-LFS/CKN9112CT-ND/1146934) 
- * 
+ * The best USB Micro B Pure SMT: **10118192-0001LF** [Datasheet](http://www.amphenol-icc.com/media/wysiwyg/files/drawing/10118192.pdf) [Digikey](https://www.digikey.com/product-detail/en/amphenol-fci/10118192-0001LF/609-4613-1-ND/2785378)
+ * The best USB Micro B With THT: **10118194-0001LF** [Datasheet](http://www.amphenol-icc.com/media/wysiwyg/files/drawing/10118194.pdf) [Digikey](https://www.digikey.com/product-detail/en/amphenol-fci/10118194-0001LF/609-4618-1-ND/2785382)
+ 
+### ESPs
+ * ESP-12F - No pad on back, exposes GPIO 9/10 + memory GPIOs (Electrodragon, Buy)[https://www.electrodragon.com/product/esp-12f-esp8266-wifi-board/]
+ * ESP-12S - Has pad on back, does not expose the GPIO that is usually unused.  Does not need pullup on GPIO 0 or 2 (not sure if this is 100%, but always tested to be true).  Supposadly better at WIFI (Electrodragon, Buy)[https://www.electrodragon.com/product/esp-12s-wifi-module-esp8266/]
+ 
 
 ## Mechanicals:
 Width/Spacing:
