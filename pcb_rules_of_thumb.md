@@ -13,11 +13,12 @@ Based on PCBWay Nov 16, 2018
  * Aluminium PCB ONE-LAYER: $0.015 per square centimeter
  * Aluminium PCB TWO-LAYER: $0.04 per square centimeter
 
-## PCB Mechanicals:
+## PCB Mechanicals / Kicad Setup:
+
 Width/Spacing:
- * Bare minimum: 6.5/6.5 mil width/spacing
- * If you have a QFN: 7.5 / 7.5
- * If you don't, 15 / 9
+ * Bare minimum: 6.5/6.5 mil .16/.16mm width/spacing Anything less than this runs the risk of failing to work iwth the cheap PCB services.
+ * If you have a QFN: 7.5 / 7.5 .19/.19mm 
+ * If you don't, 15 / 9 .38/.23mm
 
 Holes:
  * 13mil / 0.3mm drill
@@ -25,6 +26,14 @@ Holes:
 
 Additional:
  * 0.1 mm solder mask clearance.
+
+When exporting from kicad:
+ * Exclude edge cuts from other layers
+ * Use protel extensions
+ * Use version 4.6
+ * Drill file use inches, decmil format, gerber.
+ * Always include F/B Copper, SilkS, Mask, Paste, and Edge Cuts
+ * If ordering PCA work, **ALWAYS** Export POS files File->Frabrication Outputs->Pos file.
 
 ## Important Parts
 
