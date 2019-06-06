@@ -28,6 +28,7 @@ Execute from command-line:
  * `sudo nano /etc/grub.d/10_linux`
    * Comment out the inside of any `load_video` lines.
    * Change gfxmode to text.
+ * You may want to `sudo nano /etc/initramfs-tools/conf.d/resume` to comment out the resume line.
  * `sudo update-grub2`
 
 Odds and ends:
@@ -43,3 +44,4 @@ If you are on a laptop with hybrid graphics:
   * First boot and install in discrete mode before you can switch to hybird mode.
   * Do all these instructions in discrete mode.
   * `sudo apt-get install bumblebee primus`
+  * you may need to switch to gdm3.  `sudo apt-get install gdm3`
