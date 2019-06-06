@@ -25,10 +25,13 @@ Execute from command-line:
  * `sudo nano /etc/default/grub`
    * `GRUB_CMDLINE_LINUX_DEFAULT="vga=normal nofb"`
    * `GRUB_GFXPAYLOAD_LINUX=text`
- * sudo nano /etc/grub.d/10_linux
+ * `sudo nano /etc/grub.d/10_linux`
    * Comment out the inside of any `load_video` lines.
    * Change gfxmode to text.
- * sudo update-grub2
+ * `sudo update-grub2`
+
+Odds and ends:
+ * Sometimes linux mint does something weird in FSTAB to add a cryptswap thing.  Nix that.  It's troublelsome.  Yes, your key might get divulged, also you can just disable swap.
 
 Setting up firefox:
  * Add search bar
@@ -36,4 +39,7 @@ Setting up firefox:
  * Click on the google G.
  * Go back into the settings.  Make Google default.
 
-Just FYI: On some laptops, you need to first boot and install in discrete mode before you can switch to hybird mode.
+If you are on a laptop with hybrid graphics:
+  * First boot and install in discrete mode before you can switch to hybird mode.
+  * Do all these instructions in discrete mode.
+  * `sudo apt-get install bumblebee primus`
