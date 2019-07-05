@@ -45,3 +45,8 @@ If you are on a laptop with hybrid graphics:
   * Do all these instructions in discrete mode.
   * `sudo apt-get install bumblebee primus`
   * you may need to switch to gdm3.  `sudo apt-get install gdm3`
+  
+  
+Enable alt-drag for windows dragging around:
+  * https://unix.stackexchange.com/questions/28514/how-to-get-altright-mouse-to-resize-windows-again
+  * `gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'`
