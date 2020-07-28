@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name MicroSD-HYC77-TF09-200)(type KiCad)(uri ${KIPRJMOD}/MicroSD-HYC77-TF09-200.pretty)(options "")(descr ""))
+)

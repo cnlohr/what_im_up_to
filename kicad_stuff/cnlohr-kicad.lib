@@ -1,0 +1,22 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# swd_1x5_header
+#
+DEF swd_1x5_header U 0 40 Y Y 1 F N
+F0 "U" 0 250 50 H V C CNN
+F1 "swd_1x5_header" 0 -350 50 H V C CNN
+F2 "cnlohr-kicad:POGO-5-SWD" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+F4 "DNP" 0 0 50 H I C CNN "DNP"
+DRAW
+S -100 200 150 -300 0 1 0 f
+X GND 1 -200 150 100 R 50 50 1 1 B
+X 5V 2 -200 50 100 R 50 50 1 1 B
+X ~RST~ 3 -200 -50 100 R 50 50 1 1 B
+X SWD 4 -200 -150 100 R 50 50 1 1 B
+X SWC 5 -200 -250 100 R 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+#End Library
