@@ -4,8 +4,7 @@
 #include "basicfat.h"
 #include "avr_print.h"
 #include <alloca.h>
-#include "common.h"
-#include <util/delay.h>
+#include "config.h"
 
 static uint32_t fat_partition_head;
 static uint32_t first_data_sector;
@@ -29,7 +28,7 @@ unsigned char openFAT()
 	uint8_t  BPB_SecPerClus;
 	uint16_t BPB_RsvdSecCnt;
 	uint8_t  BPB_NumFATs;
-	uint8_t  BPB_RootEntCnt;
+	//uint8_t  BPB_RootEntCnt;
 	uint8_t  IsFATOK;
 
 
@@ -53,34 +52,26 @@ try_readfat:
 	}
 
 	dumpSDDAT( 11 ); //dump jump and description
-	_delay_ms(2);
 	//XXX Consider doing sanity checks here for if the FAT is OK.
 	BPB_BytesPerSec = internal_16LEFAT();
 	BPB_SecPerClus  = internal_8FAT();
 	BPB_RsvdSecCnt  = internal_16LEFAT();
 	BPB_NumFATs     = internal_8FAT();
-	BPB_RootEntCnt  = internal_16LEFAT();
-	_delay_ms(4);
+	/*BPB_RootEntCnt  = */ internal_16LEFAT();
 
 	dumpSDDAT( 13 ); //we don't care about any of these values.
-	_delay_ms(6);
 
 	BPB_TotSec32    = internal_32LEFAT();
 	BPB_FATSz32     = internal_32LEFAT();
 
 	dumpSDDAT( 42 ); //we don't care about this, either.
-	_delay_ms(8);
 
-	//46 41 54 33 32 20 20 20 a.k.a. "FAT
-	
+	//46 41 54 33 32 20 20 20 a.k.a. "FAT	
 	if( internal_32LEFAT() != 0x33544146 )
 		IsFATOK = 0;
 
 	if( internal_32LEFAT() != 0x20202032 )
 		IsFATOK = 0;
-
-	_delay_ms(10);
-
 
 	if( !IsFATOK )
 	{
@@ -143,6 +134,7 @@ uint32_t FindClusterFileInDir( const char * fname, uint32_t cluster, int16_t fil
 	dummy.sectorno = 0;
 	dummy.byteno = 0;
 
+	sendstr( "FINDING FILE" );
 	StartReadFAT( &dummy );
 
 	entry = 0;
@@ -155,10 +147,13 @@ uint32_t FindClusterFileInDir( const char * fname, uint32_t cluster, int16_t fil
 	do
 	{
 		uint8_t currententry[32];
+		sendstr( "CE: " );
 		for( i = 0; i < 32; i++ )
 		{
 			currententry[i] = read8FAT();
+			sendhex2(currententry[i]); 
 		}
+
 
 		//what are we dealing with?
 		if( currententry[0] == 0xE5 ) continue;
@@ -212,7 +207,15 @@ uint32_t FindClusterFileInDir( const char * fname, uint32_t cluster, int16_t fil
 		}
 
 		haslongfilename = 0;
-
+		sendstr( "CHECKING\n" );
+		sendhex4( fileid );
+		sendstr( "\n" );
+		sendhex4( entry );
+		sendstr( "\n" );
+		sendstr( longfname );
+		sendstr( "\n" );
+		sendstr( fname );
+		sendstr( "\n" );
 		if( fileid == entry || ( fileid == -1 && strNCcmp( longfname, fname ) == 0 ) )
 		{
 			uint32_t ret = 0;
@@ -248,7 +251,7 @@ unsigned char StartReadFAT( struct FileInfo * file )
 	uint16_t i;
 
 	lastfile = file;
-	
+
 	uint8_t ret = startSDread( ClusterToSector( file->clusterno) + fat_partition_head + file->sectorno );
 	if( ret )
 	{
@@ -268,8 +271,14 @@ unsigned char StartReadFAT_SA( struct FileInfo * file )
 	uint16_t i;
 
 	lastfile = file;
-	
-	uint8_t ret = startSDread( ClusterToSector( file->clusterno) + fat_partition_head + file->sectorno );
+	uint32_t sector = ClusterToSector( file->clusterno) + fat_partition_head + file->sectorno;
+	sendstr( "StartReadFAT_SA:" );
+	sendhex4( sector >> 16 );
+	sendchr(':' );
+	sendhex4( sector & 0xffff );
+	sendchr('\n' );
+	uint8_t ret = startSDread( sector );
+
 	if( ret )
 	{
 		sendstr( "General fault starting card read.\n" );
@@ -346,11 +355,6 @@ uint8_t  read8FAT()
 
 	if( lastfile )
 		lastfile->byteno++;
-/*
-sendchr( 0 );
-sendchr( '$' );
-sendhex4( opsleftSD );*/
-
 
 	if( opsleftSD <= 0 )
 	{

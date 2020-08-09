@@ -5,7 +5,7 @@ SRCS = main.c ePaperColor.c fullsd.c basicfat.c avr_print.c
 
 PROCESSOR=atmega168pb
 PROGRAMCODE=m168pb
-CFLAGS = -O1 -mmcu=$(PROCESSOR) -DF_CPU=8000000UL -I. -DMUTE_PRINTF
+CFLAGS = -O1 -mmcu=$(PROCESSOR) -DF_CPU=8000000UL -I.
 ASFLAGS = $(CFLAGS) -x assembler-with-cpp
 
 CFLAGS:=$(CFLAGS) -flto -fwhole-program  #NOTE: For figuring out more details from binaries, ditch this line.

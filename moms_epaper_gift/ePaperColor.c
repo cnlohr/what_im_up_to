@@ -1,4 +1,5 @@
 #include "ePaperColor.h"
+#include "avr_print.h"
 
 #define width EPD_WIDTH
 #define height EPD_HEIGHT
@@ -21,19 +22,21 @@
 //#define Delay() { asm volatile( "nop" ); }
 #define Delay()
 
-static void EPD_5IN65F_BusyHigh(void)// If BUSYN=0 then waiting
+static void EPD_5IN65F_BusyHigh( uint16_t timeout )// If BUSYN=0 then waiting
 {
     while(!(GPIORead(WVS_BUSY)))
 	{
-		Delay();
+		if( timeout-- == 0 ) break;
+		_delay_ms(1);
 	}
 }
 
-static void EPD_5IN65F_BusyLow(void)// If BUSYN=1 then waiting
+static void EPD_5IN65F_BusyLow( uint16_t timeout )// If BUSYN=1 then waiting
 {
     while(GPIORead(WVS_BUSY))
 	{
-		Delay();
+		if( timeout-- == 0 ) break;
+		_delay_ms(1);
 	}
 }
 
@@ -95,38 +98,27 @@ void SendEPaperData( uint8_t * data, int len )
 		SendData( data[i] );
 }
 
-void SetupEpaperDone()
+void FlushAndDisplayEPaper()
 {
     SendCommand(0x04);//0x04
-    EPD_5IN65F_BusyHigh();
+    EPD_5IN65F_BusyHigh(150);
     SendCommand(0x12);//0x12
-    EPD_5IN65F_BusyHigh();
+    EPD_5IN65F_BusyHigh(15000);
     SendCommand(0x02);  //0x02
-    EPD_5IN65F_BusyLow();
-	_delay_us(200000);
+    EPD_5IN65F_BusyLow(150);
+	_delay_us(20000);
 }
 
 
 void ClearEpaper(uint8_t color)
 {
-    SendCommand(0x61);//Set Resolution setting
-    SendData(0x02);
-    SendData(0x58);
-    SendData(0x01);
-    SendData(0xC0);
-    SendCommand(0x10);
+	SetupEPaperForData();
 	uint8_t cv = (color<<4)|color;
     for(int i=0; i<width/2; i++) {
         for(int j=0; j<height; j++)
             SendData(cv);
     }
-    SendCommand(0x04);//0x04
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x12);//0x12
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x02);  //0x02
-    EPD_5IN65F_BusyLow();
- 	_delay_us(10000);
+	FlushAndDisplayEPaper();
 }
 
 
@@ -136,12 +128,7 @@ void EPD_5IN65F_Show7Block(void)
     unsigned char const Color_seven[8] =
 	{EPD_5IN65F_BLACK,EPD_5IN65F_BLUE,EPD_5IN65F_GREEN,EPD_5IN65F_ORANGE,
 	EPD_5IN65F_RED,EPD_5IN65F_YELLOW,EPD_5IN65F_WHITE,7};
-    SendCommand(0x61);//Set Resolution setting
-    SendData(0x02);
-    SendData(0x58);
-    SendData(0x01);
-    SendData(0xC0);
-    SendCommand(0x10);
+	SetupEPaperForData();
 
     for(i=0; i<224; i++) {
         for(k = 0 ; k < 4; k ++) {
@@ -157,13 +144,7 @@ void EPD_5IN65F_Show7Block(void)
             }
         }
     }
-    SendCommand(0x04);//0x04
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x12);//0x12
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x02);  //0x02
-    EPD_5IN65F_BusyLow();
-	_delay_us(200000);
+	FlushAndDisplayEPaper();
 }
 
 
@@ -171,23 +152,12 @@ void EPD_5IN65F_Show7Block(void)
 
 static void Clear(uint8_t color)
 {
-    SendCommand(0x61);//Set Resolution setting
-    SendData(0x02);
-    SendData(0x58);
-    SendData(0x01);
-    SendData(0xC0);
-    SendCommand(0x10);
+	SetupEPaperForData();
     for(int i=0; i<width/2; i++) {
         for(int j=0; j<height; j++)
             SendData((color<<4)|color);
     }
-    SendCommand(0x04);//0x04
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x12);//0x12
-    EPD_5IN65F_BusyHigh();
-    SendCommand(0x02);  //0x02
-    EPD_5IN65F_BusyLow();
- 	_delay_us(10000);
+	FlushAndDisplayEPaper();
 }
 
 
@@ -221,11 +191,11 @@ void SetupEPaperDisplay()
 	WVS_PORT |= _BV(WVS_BUSY); //Pull-up.
 
 	//Reset for 1ms
-	_delay_ms( 1 );
+	_delay_ms( 10 );
 
 	GPIOOn( WVS_RESET );
 
-	_delay_ms( 1 );
+	_delay_ms( 10 );
 
 #if 0
 	_delay_ms(100);
@@ -235,7 +205,9 @@ void SetupEPaperDisplay()
 		GPIOOff( WVS_CS );
 	}
 #endif
-    EPD_5IN65F_BusyHigh();
+	sendstr( "Epaper Leaving Reset\n" );
+    EPD_5IN65F_BusyHigh( 20 );
+	sendstr( "Epaper Busy High Done\n" );
 
 
 

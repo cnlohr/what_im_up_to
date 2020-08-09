@@ -1,4 +1,4 @@
-//Copyright 2012-2013 <>< Charles Lohr, All Rights Reserved, May be licensed under MIT/x11 or newBSD licenses, you choose.
+//Copyright 2012-2013, 2020 <>< Charles Lohr, All Rights Reserved, May be licensed under MIT/x11 or newBSD licenses, you choose.
 
 #include "fullsd.h"
 #include <avr/io.h>
@@ -28,7 +28,6 @@ unsigned char microSPIRDAT();
 void dumpSD( unsigned short count ); //for raw dumping
 void microSPID();
 
-short    		opsleftSD;
 static unsigned char	highcap; //the 0x40 bit indicates if it's SDXC (1) or SDSC (0)
 uint32_t RCA;
 
@@ -64,7 +63,7 @@ restart:
 	SDPORT |= SDCMD | 0x0f; //Make DATA0 up... high
 	SDDDR |= (SDCMD | 0x0f);
 
-	_delay_ms(200);
+	_delay_ms(100);
 
 	for( i = 0; i < 74; i++ )
 	{
@@ -109,7 +108,7 @@ restart:
 	{
 		tries++;
 		_delay_ms(10);
-		if( tries > 1000 )
+		if( tries > 10 )
 			goto fail_cmd8;
 		else
 			goto restart;
@@ -487,7 +486,7 @@ fail_cmd1:
 
 
 uint8_t enablecrc;
-uint16_t remaining;
+uint16_t opsleftSD;
 uint8_t nibblecrcs[16];
 uint16_t nibcount;
 uint8_t nibpl = 0;
@@ -555,18 +554,16 @@ unsigned char startSDread( uint32_t sector )
 	nibreset();
 #endif
 
-	remaining = 512;
-//	datacrc = 0;
-//	for( i = 0; i < 16; i++ )
-//		nibblecrcs[i] = 0;
+	opsleftSD = 512;
+
 }
 
 unsigned char popSDread()
 {
 	uint8_t ret;
-	if( remaining )
+	if( opsleftSD )
 	{
-		remaining--;
+		opsleftSD--;
 		ret =  microSPIRDAT();
 		return ret;
 	}
@@ -580,8 +577,8 @@ void dumpSDDAT( unsigned short todump )
 	uint16_t i;
 	for(i = 0; i < todump;i++)
 	{
-		if( remaining == 0 ) return;
-		remaining--;
+		if( opsleftSD == 0 ) return;
+		opsleftSD--;
 		ret =  microSPIRDAT();
 	}
 }
@@ -592,9 +589,9 @@ unsigned char endSDread()
 	uint16_t gotcrc[4];
 	uint8_t r;
 
-	while( remaining )
+	while( opsleftSD )
 	{
-		remaining--;
+		opsleftSD--;
 		microSPIRDAT();
 //		datacrc = _crc_xmodem_update( datacrc, r);
 	}
@@ -664,14 +661,14 @@ unsigned char startSDwrite( uint32_t sector )
 	microSPIWDAT( 0xF0 );
 
 	nibreset();
-	remaining = 512;
+	opsleftSD = 512;
 }
 
 void pushSDwrite( unsigned char c )
 {
-	if( remaining )
+	if( opsleftSD )
 	{
-		remaining--;
+		opsleftSD--;
 		microSPIWDAT( c );
 	}
 }
@@ -681,9 +678,9 @@ unsigned char endSDwrite()
 {
 	uint8_t r;
 
-	while( remaining )
+	while( opsleftSD )
 	{
-		remaining--;
+		opsleftSD--;
 		pushSDwrite( 0xff );
 	}
 

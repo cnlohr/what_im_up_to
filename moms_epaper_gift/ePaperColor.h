@@ -33,9 +33,10 @@ Color Index
 
 
 void SetupEPaperDisplay();
+
 void SetupEPaperForData();
 void SendEPaperData( uint8_t * data, int len );
-void SetupEpaperDone();
+void FlushAndDisplayEPaper();
 
 void ClearEpaper(uint8_t color);
 

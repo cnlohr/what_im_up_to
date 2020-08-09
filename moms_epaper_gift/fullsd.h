@@ -66,7 +66,7 @@ void dumpSDDAT( unsigned short count );
 //Do this for data.
 void dumpSDR( unsigned short todump );
 
-extern short opsleftSD;
+extern uint16_t opsleftSD;
 
 
 #endif

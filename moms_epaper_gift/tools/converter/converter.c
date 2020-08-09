@@ -12,7 +12,7 @@ uint8_t palette[8*3] = {
 	191, 0, 0,
 	255, 243, 56,
 	232, 126, 0,
-	188 ,188 , 188 
+	194 ,164 , 244 
 };
 
 int depalette( uint8_t * color )
@@ -61,14 +61,17 @@ int main( int argc, char ** argv )
 		y = 448;
 	}
 
+	int i, j;
 	FILE * fout = fopen( argv[2], "wb" );
+
 	int margin = 448 - y;
 	uint8_t line[600/2];
 	if( y < 448 )
 	{
 		int k;
 		int ke = margin / 2;
-		memset( line, 0x66, 600/2 );
+		//memset( line, 0x66, 600/2 );
+		memset( line, 0x11, 600/2 );
 		for( k = 0; k < ke; k++ )
 		{
 			fwrite( line, 600/2, 1, fout );
@@ -80,19 +83,19 @@ int main( int argc, char ** argv )
 	}
 
 	if( y > 448 ) y = 448;
-	int i, j;
 	for( j = 0; j < y; j++ )
 	{
 		for( i = 0; i < x/2; i++ )
 		{
 			int c1 = depalette( data + n*(i*2 + x*j ) );
 			int c2 = depalette( data + n*(i*2 + x*j + 1 ) );
-			line[i] = c1 | (c2<<4);
+			line[i] = c2 | (c1<<4);
 		}
 		fwrite( line, 600/2, 1, fout );
 	}
 	int k;
-	memset( line, 0x66, 600/2 );
+	//memset( line, 0x66, 600/2 );
+	memset( line, 0x11, 600/2 );
 	for( k = 0; k < margin; k++ )
 	{
 		fwrite( line, 600/2, 1, fout );

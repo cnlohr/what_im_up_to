@@ -7,7 +7,41 @@
 #include <util/delay.h>
 #include <stdio.h>
 
+#define DUMBSERIALPIN 1
+#define DUMBSERIALPORT PORTE
+#define DUMBSERIALDDR  DDRE
+
 #ifndef MUTE_PRINTF
+
+#ifdef DUMBSERIALPIN
+
+void sendchr( char c )
+{
+#define SCN { asm volatile( "nop" ); }
+	//Weird setup for autobaud on
+	DUMBSERIALPORT |= _BV(DUMBSERIALPIN);
+	DUMBSERIALDDR |= _BV(DUMBSERIALPIN);
+	cli();
+	SCN; SCN; SCN; SCN;
+
+	//One bit worth:
+	SCN; SCN; SCN; SCN; SCN; SCN; SCN;
+	DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN);
+	SCN; SCN;
+	if( c & 0x01 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x02 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x04 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x08 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x10 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x20 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x40 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN; }
+	if( c & 0x80 )	{ SCN; DUMBSERIALPORT |= _BV(DUMBSERIALPIN); } else	{ DUMBSERIALPORT &= ~_BV(DUMBSERIALPIN); SCN; SCN;}
+	SCN;  SCN;
+	DUMBSERIALPORT |= _BV(DUMBSERIALPIN);
+	sei();
+}
+
+#else
 
 #if	defined (__AVR_ATtiny2313__) || defined (__AVR_ATtiny2313A__)
 #define SPI_DDR_SET {DDRB&=0x1F;DDRB|=0x40;}
@@ -89,9 +123,8 @@ void sendchr( char c )
 #endif
 }
 
-#define sendstr( s ) { unsigned char rcnt; \
-	for( rcnt = 0; s[rcnt] != 0; rcnt++ ) \
-		sendchr( s[rcnt] ); }
+
+#endif /* ending regular send DUMBSERIALPIN */
 
 void sendhex1( unsigned char i )
 {
@@ -117,7 +150,7 @@ static int SPIPutCharInternal(char c, FILE *stream)
 
 static FILE mystdout = FDEV_SETUP_STREAM( SPIPutCharInternal, NULL, _FDEV_SETUP_WRITE );
 
-
+#ifndef DUMBSERIALPIN
 void setup_spi( void )
 {
 	SPI_DDR_SET;
@@ -143,5 +176,6 @@ void setup_spi( void )
 #endif
 	stdout = &mystdout;
 }
+#endif
 
 #endif
