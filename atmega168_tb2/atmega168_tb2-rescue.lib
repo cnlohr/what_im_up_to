@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# atmega168_tb2-rescue_+5V-power
+# +5V-power
 #
-DEF atmega168_tb2-rescue_+5V-power #PWR 0 0 Y Y 1 F P
+DEF +5V-power #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "atmega168_tb2-rescue_+5V-power" 0 140 50 H V C CNN
+F1 "+5V-power" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -16,11 +16,11 @@ X +5V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_+BATT-power
+# +BATT-power
 #
-DEF atmega168_tb2-rescue_+BATT-power #PWR 0 0 Y Y 1 F P
+DEF +BATT-power #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "atmega168_tb2-rescue_+BATT-power" 0 140 50 H V C CNN
+F1 "+BATT-power" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -31,11 +31,11 @@ X +BATT 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_ATmega168PB-AU-MCU_Microchip_ATmega
+# ATmega168PB-AU-MCU_Microchip_ATmega
 #
-DEF atmega168_tb2-rescue_ATmega168PB-AU-MCU_Microchip_ATmega U 0 20 Y Y 1 F N
+DEF ATmega168PB-AU-MCU_Microchip_ATmega U 0 20 Y Y 1 F N
 F0 "U" -500 1450 50 H V L BNN
-F1 "atmega168_tb2-rescue_ATmega168PB-AU-MCU_Microchip_ATmega" 100 -1450 50 H V L TNN
+F1 "ATmega168PB-AU-MCU_Microchip_ATmega" 100 -1450 50 H V L TNN
 F2 "Package_QFP:TQFP-32_7x7mm_P0.8mm" 0 0 50 H I C CIN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -78,11 +78,11 @@ X PD5 9 600 -1000 100 L 50 50 1 1 B
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_AVR-ISP-6-Connector
+# AVR-ISP-6-Connector
 #
-DEF atmega168_tb2-rescue_AVR-ISP-6-Connector J 0 40 Y Y 1 F N
+DEF AVR-ISP-6-Connector J 0 40 Y Y 1 F N
 F0 "J" -250 450 50 H V L CNN
-F1 "atmega168_tb2-rescue_AVR-ISP-6-Connector" 0 450 50 H V L CNN
+F1 "AVR-ISP-6-Connector" 0 450 50 H V L CNN
 F2 "" -250 50 50 V I C CNN
 F3 "" -1275 -550 50 H I C CNN
 $FPLIST
@@ -106,11 +106,11 @@ X GND 6 -100 -400 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_C_Small-Device
+# C_Small-Device
 #
-DEF atmega168_tb2-rescue_C_Small-Device C 0 10 N N 1 F N
+DEF C_Small-Device C 0 10 N N 1 F N
 F0 "C" 10 70 50 H V L CNN
-F1 "atmega168_tb2-rescue_C_Small-Device" 10 -80 50 H V L CNN
+F1 "C_Small-Device" 10 -80 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -124,11 +124,11 @@ X ~ 2 0 -100 80 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Conn_01x01_Female-Connector
+# Conn_01x01_Female-Connector
 #
-DEF atmega168_tb2-rescue_Conn_01x01_Female-Connector J 0 40 Y N 1 F N
+DEF Conn_01x01_Female-Connector J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "atmega168_tb2-rescue_Conn_01x01_Female-Connector" 0 -100 50 H V C CNN
+F1 "Conn_01x01_Female-Connector" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -141,11 +141,11 @@ X Pin_1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Conn_01x02-Connector_Generic
+# Conn_01x02-Connector_Generic
 #
-DEF atmega168_tb2-rescue_Conn_01x02-Connector_Generic J 0 40 Y N 1 F N
+DEF Conn_01x02-Connector_Generic J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "atmega168_tb2-rescue_Conn_01x02-Connector_Generic" 0 -200 50 H V C CNN
+F1 "Conn_01x02-Connector_Generic" 0 -200 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -160,11 +160,11 @@ X Pin_2 2 -200 -100 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Conn_01x08-Connector_Generic
+# Conn_01x08-Connector_Generic
 #
-DEF atmega168_tb2-rescue_Conn_01x08-Connector_Generic J 0 40 Y N 1 F N
+DEF Conn_01x08-Connector_Generic J 0 40 Y N 1 F N
 F0 "J" 0 400 50 H V C CNN
-F1 "atmega168_tb2-rescue_Conn_01x08-Connector_Generic" 0 -500 50 H V C CNN
+F1 "Conn_01x08-Connector_Generic" 0 -500 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -191,11 +191,11 @@ X Pin_8 8 -200 -400 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Conn_01x10-Connector_Generic
+# Conn_01x10-Connector_Generic
 #
-DEF atmega168_tb2-rescue_Conn_01x10-Connector_Generic J 0 40 Y N 1 F N
+DEF Conn_01x10-Connector_Generic J 0 40 Y N 1 F N
 F0 "J" 0 500 50 H V C CNN
-F1 "atmega168_tb2-rescue_Conn_01x10-Connector_Generic" 0 -600 50 H V C CNN
+F1 "Conn_01x10-Connector_Generic" 0 -600 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -226,11 +226,11 @@ X Pin_9 9 -200 -400 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Crystal-Device
+# Crystal-Device
 #
-DEF atmega168_tb2-rescue_Crystal-Device Y 0 40 N N 1 F N
+DEF Crystal-Device Y 0 40 N N 1 F N
 F0 "Y" 0 150 50 H V C CNN
-F1 "atmega168_tb2-rescue_Crystal-Device" 0 -150 50 H V C CNN
+F1 "Crystal-Device" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -247,11 +247,11 @@ X 2 2 150 0 50 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_GND-power
+# GND-power
 #
-DEF atmega168_tb2-rescue_GND-power #PWR 0 0 Y Y 1 F P
+DEF GND-power #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "atmega168_tb2-rescue_GND-power" 0 -150 50 H V C CNN
+F1 "GND-power" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -260,11 +260,11 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_LP2985-3.0-Regulator_Linear
+# LP2985-3.0-Regulator_Linear
 #
-DEF atmega168_tb2-rescue_LP2985-3.0-Regulator_Linear U 0 10 Y Y 1 F N
+DEF LP2985-3.0-Regulator_Linear U 0 10 Y Y 1 F N
 F0 "U" -250 225 50 H V C CNN
-F1 "atmega168_tb2-rescue_LP2985-3.0-Regulator_Linear" 0 225 50 H V L CNN
+F1 "LP2985-3.0-Regulator_Linear" 0 225 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-23-5" 0 325 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -280,11 +280,11 @@ X VOUT 5 400 100 100 L 50 50 1 1 w
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Micro_SD_Card_Det-Connector
+# Micro_SD_Card_Det-Connector
 #
-DEF atmega168_tb2-rescue_Micro_SD_Card_Det-Connector J 0 40 Y Y 1 F N
+DEF Micro_SD_Card_Det-Connector J 0 40 Y Y 1 F N
 F0 "J" -650 700 50 H V C CNN
-F1 "atmega168_tb2-rescue_Micro_SD_Card_Det-Connector" 650 700 50 H V R CNN
+F1 "Micro_SD_Card_Det-Connector" 650 700 50 H V R CNN
 F2 "" 2050 700 50 H I C CNN
 F3 "" 0 100 50 H I C CNN
 $FPLIST
@@ -315,11 +315,11 @@ X DET_B 9 -900 -500 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_Q_PMOS_GSD-Device
+# Q_PMOS_GSD-Device
 #
-DEF atmega168_tb2-rescue_Q_PMOS_GSD-Device Q 0 0 Y N 1 F N
+DEF Q_PMOS_GSD-Device Q 0 0 Y N 1 F N
 F0 "Q" 200 50 50 H V L CNN
-F1 "atmega168_tb2-rescue_Q_PMOS_GSD-Device" 200 -50 50 H V L CNN
+F1 "Q_PMOS_GSD-Device" 200 -50 50 H V L CNN
 F2 "" 200 100 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -343,11 +343,11 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# atmega168_tb2-rescue_R_Small-Device
+# R_Small-Device
 #
-DEF atmega168_tb2-rescue_R_Small-Device R 0 10 N N 1 F N
+DEF R_Small-Device R 0 10 N N 1 F N
 F0 "R" 30 20 50 H V L CNN
-F1 "atmega168_tb2-rescue_R_Small-Device" 30 -40 50 H V L CNN
+F1 "R_Small-Device" 30 -40 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST

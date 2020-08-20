@@ -699,10 +699,10 @@ PE0
 Text GLabel 2950 3550 0    50   Input ~ 0
 PE1
 $Comp
-L Connector:Conn_01x01_Female J?
+L Connector:Conn_01x01_Female J6
 U 1 1 5F205323
 P 5200 1200
-F 0 "J?" H 5228 1226 50  0000 L CNN
+F 0 "J6" H 5228 1226 50  0000 L CNN
 F 1 "RX" H 5228 1135 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 5200 1200 50  0001 C CNN
 F 3 "~" H 5200 1200 50  0001 C CNN
@@ -710,10 +710,10 @@ F 3 "~" H 5200 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J?
+L Connector:Conn_01x01_Female J7
 U 1 1 5F206AE0
 P 5200 1400
-F 0 "J?" H 5228 1426 50  0000 L CNN
+F 0 "J7" H 5228 1426 50  0000 L CNN
 F 1 "PE0" H 5228 1335 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 5200 1400 50  0001 C CNN
 F 3 "~" H 5200 1400 50  0001 C CNN
@@ -721,10 +721,10 @@ F 3 "~" H 5200 1400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x01_Female J?
+L Connector:Conn_01x01_Female J8
 U 1 1 5F2077A2
 P 5200 1600
-F 0 "J?" H 5228 1626 50  0000 L CNN
+F 0 "J8" H 5228 1626 50  0000 L CNN
 F 1 "PE1" H 5228 1535 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 5200 1600 50  0001 C CNN
 F 3 "~" H 5200 1600 50  0001 C CNN
@@ -738,10 +738,10 @@ PE1
 Text GLabel 5000 1200 0    50   Input ~ 0
 RX
 $Comp
-L Connector:Conn_01x01_Female J?
+L Connector:Conn_01x01_Female J9
 U 1 1 5F208BCE
 P 5200 1800
-F 0 "J?" H 5228 1826 50  0000 L CNN
+F 0 "J9" H 5228 1826 50  0000 L CNN
 F 1 "PE1" H 5228 1735 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_2.5x2.5mm" H 5200 1800 50  0001 C CNN
 F 3 "~" H 5200 1800 50  0001 C CNN
@@ -749,10 +749,10 @@ F 3 "~" H 5200 1800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0131
 U 1 1 5F20BC57
 P 5000 1800
-F 0 "#PWR?" H 5000 1550 50  0001 C CNN
+F 0 "#PWR0131" H 5000 1550 50  0001 C CNN
 F 1 "GND" H 5005 1627 50  0000 C CNN
 F 2 "" H 5000 1800 50  0001 C CNN
 F 3 "" H 5000 1800 50  0001 C CNN

@@ -7,16 +7,17 @@ Where we explain, in 99 episodes all of the glorious pieces that make up C and t
 This is the hello world program.  Programmers learn hello, world.
  * #include tells the compiler it needs more 
 
-### (2) Variables
- * 
-
-### (3) Data Types
-
-
-### (9) Environments and Compiling
+### (??) Environments and Compiling
  * Visual Studio
  * GCC on Linux
  * TCC on Windows
+
+
+### (2) Variables
+
+### (3) Data Types
+
+### (??) Strings
 
 ### (10) Man and Google
  * man function
@@ -28,21 +29,24 @@ This is the hello world program.  Programmers learn hello, world.
 
 ### (20) Compiling
 
-
-### Development Patterns
- * Shimming code (Developing in one environment for another)
- * Boxcar and IIR filters
- * bit-shift IIRs
-
 ### (35) Header dependencies
 
 ### (36) Compiling and Linking as separate steps
+
+### (??) -S for assembly
 
 ### (37) Makefiles
 
 ## More advanced...
 
+### (??) argv and argc
+
  * Integer math, and how to avoid floats.
+
+### Development Patterns
+ * Shimming code (Developing in one environment for another)
+ * Boxcar and IIR filters
+ * bit-shift IIRs
 
 ### (55) __attribute__((constructor))
 
