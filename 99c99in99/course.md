@@ -82,6 +82,15 @@ Trees
 Hash Maps
 
 
+# Linux
+## Piping thing (Link to base64)
+You can copy & paste whole files:
+cat << '[]' | base64 -d > datascripts.tar.gz
+H4sIAAAAAAAAA+1ZbW/bNhDu1+hX3OygSbBZL7ZsBelSIGuytkBeCrstMAyDIUt0LJgWVZKKE3T5
+[]
+
+
+
 
 # In General
 
@@ -94,6 +103,7 @@ Hash Maps
 ## Kalman Filters
 
 ## Coding
+### Base64
 ### Gray Coding
 ### SECDED
 ### XOR Parity
