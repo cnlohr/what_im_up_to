@@ -45,6 +45,11 @@ This is the hello world program.  Programmers learn hello, world.
 
 ## More advanced...
 
+### Math
+ * Order of operations
+ * Boolean Math (and early exit)
+ * Bitwies Operations
+
 ### (??) argv and argc
 
  * Integer math, and how to avoid floats.
@@ -95,6 +100,14 @@ Hash Maps
 ### Galois GF256
 
 
+# Crossover
+### AM
+### FM
+### PM
+### CDMA
+### IDMA
+
+
 # Electrical
 ### Electrical Circuit
 ### Materials that make up resistance / resistors
@@ -106,4 +119,7 @@ Hash Maps
 ### Crystals
 ### Resonators
 ### Oscillators
+### Analog filters (First order)
+### Mixing
+
 
