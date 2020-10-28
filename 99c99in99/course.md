@@ -17,7 +17,11 @@ This is the hello world program.  Programmers learn hello, world.
 
 ### (3) Data Types
 
+### (??) Arrays
+
 ### (??) Strings
+
+### (??) glibc
 
 ### (10) Man and Google
  * man function
@@ -28,6 +32,8 @@ This is the hello world program.  Programmers learn hello, world.
  * googling errors
 
 ### (20) Compiling
+
+### (24) Compilers
 
 ### (35) Header dependencies
 
@@ -62,4 +68,11 @@ This is the hello world program.  Programmers learn hello, world.
 ### (75) /proc/mem and /proc/maps
 
 ### (76) /proc/args, etc...
+
+
+## Algoithms
+Optimizing things by calculating something at the start, instead of doing it every frame.  I.e. bullet trajectory if possible.
+Dynamic programming
+Trees
+Hash Maps
 
