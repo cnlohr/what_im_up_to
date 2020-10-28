@@ -76,3 +76,34 @@ Dynamic programming
 Trees
 Hash Maps
 
+
+
+# In General
+
+## Feedback control loop
+
+## PID Control Loop
+
+## Phase Locked Loop
+
+## Kalman Filters
+
+## Coding
+### Gray Coding
+### SECDED
+### XOR Parity
+### Galois GF256
+
+
+# Electrical
+### Electrical Circuit
+### Materials that make up resistance / resistors
+### Switches
+### Capacitors
+### Inductors
+### AC Analysis
+### Frquency ("Omega")
+### Crystals
+### Resonators
+### Oscillators
+
