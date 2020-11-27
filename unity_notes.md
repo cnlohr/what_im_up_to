@@ -1,4 +1,8 @@
-How to set up MRT with Udon.
+How to set up Multiple render targets with Udon.
+
+This also captures depth on the main camera.
+
+Make sure cameras are orthogonal!
 
 (1) Install U#
 
