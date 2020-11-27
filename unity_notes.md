@@ -58,10 +58,9 @@ Make render pass cameras part of the scene itself.
 
 
 
-Floor Shader
+Floor Shader Input: 1024x1024 and the ping/pong is run this back to back with 1024->2048->1024
 
 ```hlsl
-
 Shader "Custom/ComputeFloor"
 {
     Properties
@@ -119,7 +118,7 @@ Shader "Custom/ComputeFloor"
             {
                 // sample the texture
                 fixed4 nv = tex2D(_MainTex, fixed2( 1.0 - i.uv.r, i.uv.g ) );
-				fixed vin = length(nv);
+				fixed vin = nv.x;
                 fixed4 ov = tex2D(_CopiedTex, i.uv );
                 fixed4 Left1 = tex2D(_CopiedTex, i.uv-fixed2(1./1024.,0.) );
                 fixed4 Up1 = tex2D(_CopiedTex, i.uv-fixed2(0.,1./1024.) );
@@ -140,7 +139,7 @@ Shader "Custom/ComputeFloor"
 				value+=velocity*timestep;
 			
 
-				ov = fixed4( value*.997, vin, velocity*.997, 1. );
+				ov = fixed4( value*.999, vin, velocity*.999, 1. );
 
 #if 0
 				//Charles's weird thing
@@ -168,5 +167,6 @@ Shader "Custom/ComputeFloor"
         }
     }
 }
+
 
 ```
