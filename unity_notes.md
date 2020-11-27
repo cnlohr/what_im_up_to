@@ -60,7 +60,7 @@ Make render pass cameras part of the scene itself.
 
 Floor Shader
 
-```cg
+```hlsl
 
 Shader "Custom/ComputeFloor"
 {
