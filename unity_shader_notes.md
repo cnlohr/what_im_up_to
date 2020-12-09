@@ -13,7 +13,7 @@ Look no further.
             #define mod(x,y) (x-y*floor(x/y)) // glsl mod
 ```
 
-Toocanz provides these shortcuts.
+Toocanzs provides these shortcuts.
 ```
 #define iTime _Time.y
 #define iResolution _ScreenParams
